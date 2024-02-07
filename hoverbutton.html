@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <style>
+        body{ margin: 0; padding: 0;
+            background-image: url(./lights.jpg);
+         }
+
+.container{ text-align: center; 
+    margin-top: 360px; }
+
+.btn{ 
+    border: 8px solid #db6934;
+    background: none; 
+    padding: 10px 20px; 
+    font-size: 50px; 
+    font-family: "montserrat"; 
+    cursor: pointer; 
+    margin: 20px;
+    transition: 0.1s; 
+    position: relative; 
+    overflow: hidden;
+
+}
+
+.btn1,.btn2{ 
+    color: #db6934;
+ }
+
+.btn3,.btn4{
+     color: #fff;
+     }
+.btn1:hover,.btn2:hover{
+     color: #fff;
+}
+.btn3:hover,.btn4:hover{
+     color: #db6934;
+     }
+.btn::before{
+content:"";
+position: absolute;
+left: 0;
+width: 100%;
+height: 0%;
+background: #db6934 ;
+z-index: -1;
+transition: 0.8s;
+
+}
+.btn1::before,.btn3::before{
+     top: 0;
+      border-radius: 50% 50%;
+}
+.btn2::before,.btn4::before{ 
+    bottom: 0; 
+    border-radius: 50% 50% 0 0;
+    
+}
+.btn3::before, .btn4::before{ 
+    height: 180%;
+}
+.btn1:hover::before,.btn2:hover::before{ 
+    height: 180%;
+}
+.btn3:hover::before, .btn4:hover::before{ 
+    height: 0%;
+}
+
+
+    </style>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<button class="btn btn1">Head Office</button>
+<button class="btn btn2">DC</button>
+<button class="btn btn3">RO</button>
+<button class="btn btn4">Hubs</button>
+</div>
+</body>
+</html>

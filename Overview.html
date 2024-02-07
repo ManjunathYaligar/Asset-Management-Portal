@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Assets Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/gsap@3.10.1/dist/gsap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: darkblue;
+            color: white;
+            text-align: center;
+            padding: 0.5em;
+            font-size: 1em;
+            position: relative;
+        }
+
+        header a {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        header a:hover {
+            color: lightblue;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .asset-counts {
+            max-width: 400px;
+            text-align: left;
+            margin-top: -20px; /* Adjust this value to move the text and values up */
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #007BFF;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        #assetCounts {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="maindashboard1.html" id="home">Back</a>
+        <h1>Shadowfax Assets Overview</h1>
+    </header>
+
+    <main>
+        <h2>Asset Distribution</h2>
+
+        <div class="chart-container">
+            <canvas id="assetChart"></canvas>
+            <div class="asset-counts" id="assetCounts"></div>
+        </div>
+
+        <label for="assetType">Select Asset Type:</label>
+        <select id="assetType">
+            <option value="all">All</option>
+            <option value="Desktop">Desktop</option>
+            <option value="Printer">Printer</option>
+            <option value="Laptop">Laptop</option>
+            <option value="HHD">HHD</option>
+            <option value="Scanner">Scanner</option>
+            <option value="Access Point">Access Point</option>
+            <option value="WiFi Router">WiFi Router</option>
+            <option value="Router">Router</option>
+            <option value="Firewall">Firewall</option>
+            <option value="Switch">Switch</option>
+            <option value="Dongle WiFi">Dongle WiFi</option>
+        </select>
+    </main>
+
+    <script>
+        const assetData = {
+            labels: ["Desktop", "Printer", "Laptop", "HHD", "Scanner", "Access Point", "WiFi Router", "Router", "Firewall", "Switch", "Dongle WiFi"],
+            datasets: [{
+                label: "Number of Assets",
+                data: [],
+                backgroundColor: [],
+                hoverOffset: 8,
+            }],
+        };
+
+        const ctx = document.getElementById("assetChart").getContext("2d");
+        const myChart = new Chart(ctx, {
+            type: "pie",
+            data: assetData,
+            options: {
+                responsive: false,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                const label = context.label || '';
+                                const value = context.formattedValue || '';
+                                return `${label}: ${value}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const assetCounts = {
+            Desktop: 6,
+            Printer: 3,
+            Laptop: 2,
+            HHD: 10,
+            Scanner: 10,
+            "Access Point": 20,
+            "WiFi Router": 30,
+            Router: 50,
+            Firewall: 10,
+            Switch: 30,
+            "Dongle WiFi": 25,
+        };
+
+        initializeChart(assetCounts);
+
+        document.getElementById("assetType").addEventListener("change", function () {
+            const selectedType = this.value;
+            if (selectedType === "all") {
+                updateChart(assetCounts);
+            } else {
+                const newData = Array(assetData.labels.length).fill(0);
+                newData[assetData.labels.indexOf(selectedType)] = assetCounts[selectedType];
+                updateChartData(newData);
+            }
+            updateAssetCounts(assetCounts);
+        });
+
+        function initializeChart(counts) {
+            updateChart(counts);
+            // GSAP Animation for initial page load
+            gsap.to("main", { opacity: 1, duration: 1, ease: "power2.out" });
+        }
+
+        function updateChart(counts) {
+            const newData = assetData.labels.map(type => counts[type]);
+            updateChartData(newData);
+            updateAssetCounts(counts);
+        }
+
+        function updateChartData(newData) {
+            assetData.datasets[0].data = newData;
+            assetData.datasets[0].backgroundColor = generateRandomColors(newData.length);
+            myChart.update();
+        }
+
+        function generateRandomColors(count) {
+            return Array.from({ length: count }, () => getRandomColor());
+        }
+
+        function getRandomColor() {
+            return `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.7)`;
+        }
+
+        function updateAssetCounts(counts) {
+            let countsHTML = "<h3>Number of Assets:</h3>";
+            assetData.labels.forEach(type => {
+                countsHTML += `<p>${type}: ${counts[type]}</p>`;
+            });
+            document.getElementById("assetCounts").innerHTML = countsHTML;
+        }
+    </script>
+</body>
+
+</html>

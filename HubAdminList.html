@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard with Clickable Blocks</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #999; /* Light Gray background */
+    }
+
+    header {
+      background-color:black;
+      color: whitesmoke;
+      text-align: center;
+      padding: 0.9em;
+    }
+
+    nav {
+      background-color: #666;
+      padding: 1em;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5em 1em;
+      margin: 0 1em;
+      transition: background-color 0.3s; /* Add transition for hover effect */
+    }
+
+    nav a:hover {
+      background-color: whitesmoke; /* Change color on hover */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    .block {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      padding: 25px;
+      transition: background-color 0.3s;
+    }
+
+    .block:hover {
+      background-color: #d3d3d3;
+    }
+
+    .block1 {
+      background-color:whitesmoke;
+    }
+
+    .block2 {
+      background-color: whitesmoke;
+    }
+
+    .block3 {
+      background-color: whitesmoke;
+    }
+
+    .block4 {
+      background-color: whitesmoke;
+    }
+  </style>
+</head>
+<body>
+
+ 
+ 
+  <table>
+    <tr>
+      <td><a href="AssetForm.html" class="block block1">North</a></td>
+      <td><a href="AssetForm.html" class="block block2">West</a></td>
+    </tr>
+    <tr>
+      <td><a href="AssetForm.html" class="block block3">East</a></td>
+      <td><a href="AssetForm.html" class="block block4">South</a></td>
+    </tr>
+  </table>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asset Overview</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-image: url(./lightoriginal.jpg);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #navbar {
+      background-color: #333;
+      padding: 15px;
+      text-align: center;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 1;
+    }
+
+    #navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px;
+      transition: color 0.3s;
+      display: inline;
+    }
+
+    #navbar a:hover {
+      color: #f39c12;
+    }
+
+    #assetOverviewContainer {
+      width: 50%;
+      background-color: black;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      margin-top: 70px;
+    }
+
+    h2 {
+      text-align: center;
+      color: orangered;
+    }
+
+    #totalAssetsTable {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    #totalAssetsTable th, #totalAssetsTable td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    #totalAssetsTable th {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div id="navbar">
+  <a href="ShadowfaxAsset.html">Home</a>
+  <a href="AdminDashboard.html">Back</a>
+  <a href="ExportImport.html">Import or Export</a>
+</div>
+
+<div id="assetOverviewContainer">
+  <h2>Asset Overview</h2>
+  <canvas id="assetOverviewChart" width="400" height="150" style="margin-top: 20px;"></canvas>
+  <table id="totalAssetsTable">
+    <thead>
+      <tr>
+        <th>Total Assets</th>
+        <th>Computer</th>
+        <th>Printer</th>
+        <th>Laptop</th>
+        <th>HDD</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="totalAssetsCount">0</td>
+        <td id="totalComputerAssets">0</td>
+        <td id="totalPrinterAssets">0</td>
+        <td id="totalLaptopAssets">0</td>
+        <td id="totalHDDAssets">0</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  var assetData = {
+    labels: ['Computer', 'Printer', 'Laptop', 'HDD'],
+    datasets: [{
+      label: 'Asset Overview',
+      backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)', 'rgba(75, 192, 192, 0.7)'],
+      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+      borderWidth: 2,
+      hoverBackgroundColor: ['rgba(255, 99, 132, 0.9)', 'rgba(54, 162, 235, 0.9)', 'rgba(255, 206, 86, 0.9)', 'rgba(75, 192, 192, 0.9)'],
+      hoverBorderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+      data: [800, 2000, 1200, 1800],
+    }]
+  };
+
+  var ctx = document.getElementById('assetOverviewChart').getContext('2d');
+
+  var assetOverviewChart = new Chart(ctx, {
+    type: 'bar',
+    data: assetData,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+
+  // Calculate and display total assets for each category
+  var totalAssetsElement = document.getElementById('totalAssetsCount');
+  var totalComputerAssetsElement = document.getElementById('totalComputerAssets');
+  var totalPrinterAssetsElement = document.getElementById('totalPrinterAssets');
+  var totalLaptopAssetsElement = document.getElementById('totalLaptopAssets');
+  var totalHDDAssetsElement = document.getElementById('totalHDDAssets');
+
+  var totalComputerAssets = assetData.datasets[0].data[0];
+  var totalPrinterAssets = assetData.datasets[0].data[1];
+  var totalLaptopAssets = assetData.datasets[0].data[2];
+  var totalHDDAssets = assetData.datasets[0].data[3];
+  var totalAssets = totalComputerAssets + totalPrinterAssets + totalLaptopAssets + totalHDDAssets;
+
+  totalAssetsElement.textContent = totalAssets;
+  totalComputerAssetsElement.textContent = totalComputerAssets;
+  totalPrinterAssetsElement.textContent = totalPrinterAssets;
+  totalLaptopAssetsElement.textContent = totalLaptopAssets;
+  totalHDDAssetsElement.textContent = totalHDDAssets;
+</script>
+
+</body>
+</html>
+

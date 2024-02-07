@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Registration Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #004080;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: white;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #004080;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: whitesmoke;
+        }
+
+        input,
+        select {
+            width: calc(100% - 16px);
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Asset Registration</h1>
+    </header>
+
+    <nav>
+        <a href="ShadowfaxAsset.html">Home</a>
+        <a href="maindashboard1.html">Back</a>
+        <a href="ShadowfaxAsset.html">Logout</a> <!-- Add a link for logout -->
+    </nav>
+
+    <form id="assetForm"
+        action="https://script.google.com/macros/s/AKfycby3S0l82rK-vfVRd8fl-r_Va7iCferElyEQUv_i4z8mM3gY3KkoQO5yDjhtjWMLlIas/exec"
+        method="post" onsubmit="return validateForm()">
+        <table>
+            <tr>
+                <th>Asset Type</th>
+                <th>Asset Make</th>
+                <th>Asset Model</th>
+                <th>H/W Type</th>
+                <th>Device Ownership</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="AssetType" required>
+                        <option value="" disabled selected>Select an asset type</option>
+                        <option value="Desktop">Desktop</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Printer">Printer</option>
+                        <option value="Scanner">Scanner</option>
+                        <option value="Router">Router</option>
+                        <option value="Switch">Switch</option>
+                        <option value="Firewall">Firewall</option>
+                        <option value="Access Point">Access Point</option>
+                        <option value="WiFi Router">WiFi Router</option>
+                        <option value="HHD">HHD</option>
+                        <option value="Dongle WiFi">Dongle WiFi</option>
+                    </select>
+                </td>
+                <td><input type="text" name="AssetMake" required></td>
+                <td><input type="text" name="AssetModel" required></td>
+                <td>
+                    <select name="HWType" required>
+                        <option value="Owned">Corprate</option>
+                        <option value="Leased">BYOD</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="DeviceOwnership" required>
+                        <option value="Owned">Owned</option>
+                        <option value="Leased">Leased</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>Asset Serial Number</th>
+                <th>User Name</th>
+                <th>Email ID</th>
+                <th>Emp ID</th>
+                <th>Warranty</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="AssetSerialNumber" required></td>
+                <td><input type="text" name="UserName" required></td>
+                <td><input type="email" name="EmailID" required></td>
+                <td><input type="text" name="EmpID" required></td>
+                <td>
+                    <select name="Warranty" required>
+                        <option value="Active">In warranty</option>
+                        <option value="Inactive">Out of warranty</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>OS</th>
+                <th>Asset Status</th>
+                <th>Assigned Status</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="OS" required></td>
+                <td>
+                    <select name="AssetStatus" required>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="AssignedStatus" required>
+                        <option value="Assigned">Standby</option>
+                        <option value="Unassigned">assigned to user</option>
+                        <option value="Unassigned">Not working</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            var form = document.getElementById('assetForm');
+            if (!form.checkValidity()) {
+                alert('Please fill in all the required fields.');
+                return false;
+            }
+            return true;
+        }
+
+        // Enable pressing "Enter" to move to the next input field
+        var inputFields = document.querySelectorAll('input, select');
+        for (var i = 0; i < inputFields.length; i++) {
+            inputFields[i].addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    var index = Array.prototype.indexOf.call(inputFields, this);
+                    index = (index + 1) % inputFields.length;
+                    inputFields[index].focus();
+                    event.preventDefault();
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

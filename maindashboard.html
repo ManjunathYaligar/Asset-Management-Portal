@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        
+        /* POPPINS FONT */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(./lightoriginal.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+}
+.container{
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(./shadowfaxadvertisement.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    min-height: 400px;
+    min-width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+                0 2px 20px 0 rgba(0,0,0,0.2);
+}
+.header{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0 0;
+    font-size: 30px;
+    color: #fff;
+}
+.input-container{
+    margin: 30px 30px 10px 30px;
+}
+label{
+    color: #fff;
+    margin: 0 0 5px 15px;
+}
+.input-field{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 15px 0;
+}
+input{
+    outline: none;
+    padding: 0 20px 0 20px;
+    border: 2px solid rgba(255,255,255, 0.015);
+    background: rgba(255,255,255,0.35);
+    height: 38px;
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,0.085),
+                0 2px 30px 0 rgba(0,0,0,0.2);
+    border-radius: 50px;
+    font-size: 16px;
+    color: #fff;
+}
+input:focus,input:valid{
+    border: 2px solid rgba(255,255,255,0.65);
+    background: transparent;
+    box-shadow: none;
+    border-radius: 30px;
+}
+.submit{
+    background: transparent;
+    height: 80px;
+    border: 2px solid rgba(42, 37, 37, 0.65);
+    box-shadow: none;
+    transition: .3s ease-in-out;
+    margin-top: 10px;
+}
+.submit:hover{
+    color: rgb(248, 247, 248);
+    cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.016);
+    background: rgba(242, 90, 8, 0.747);
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,0.085),
+                0 2px 30px 0 rgba(0,0,0,0.2);
+
+}
+span{
+    display: flex;
+    justify-content: right;
+}
+
+
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+<body>
+    <div class="container">
+        <div class="header">
+            <header></header>
+        </div>
+        <div class="input-container"method="post" name="form" onsubmit="return validated()">
+            <div class="input-field">
+                
+                <input type="submit" class="submit"  name="submit"href="loginpage.html" href="#" class="btn" value="Head Office">  
+                
+            </div>
+            <div class="input-field">
+                
+                <input type="submit" class="submit"  name="submit" value="Hubs">  
+            </div>
+            <div class="input-field">
+                
+                <input type="submit" class="submit"  name="submit" value="Regional Office">  
+            </div>
+            <div class="input-field">
+                
+                <input type="submit" class="submit"  name="submit" value="DC">  
+            </div>
+        </div>
+    </div>
+    <script src="validate.js"></script>
+
+</body>
+</html>

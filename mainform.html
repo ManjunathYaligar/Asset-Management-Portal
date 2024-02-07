@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        /* POPPINS FONT */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(./lightoriginal.jpg);
+    
+    align-items:left 5px;
+    display: flex;
+    
+    
+    min-height: 95vh;
+}
+.container{
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(./shadowfaxadvertisement.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    min-height: 10px;
+    min-width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+                0 2px 20px 0 rgba(0,0,0,0.2);
+}
+.header{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0 0;
+    font-size: 30px;
+    color: #fff;
+}
+.input-container{
+    margin: 30px 30px 10px 30px;
+}
+label{
+    color: #fff;
+    margin: 0 0 5px 15px;
+}
+.input-field{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 15px 0;
+}
+input{
+    outline: none;
+    padding: 0 20px 0 20px;
+    border: 2px solid rgba(255,255,255, 0.015);
+    background: rgba(255,255,255,0.35);
+    height: 38px;
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,0.085),
+                0 2px 30px 0 rgba(0,0,0,0.2);
+    border-radius: 50px;
+    font-size: 16px;
+    color: #fff;
+}
+input:focus,input:valid{
+    border: 2px solid rgba(255,255,255,0.65);
+    background: transparent;
+    box-shadow: none;
+    border-radius: 30px;
+}
+.submit{
+    background: transparent;
+    height: 40px;
+    border: 2px solid rgba(42, 37, 37, 0.65);
+    box-shadow: none;
+    transition: .3s ease-in-out;
+    margin-top: 10px;
+}
+.submit:hover{
+    color: rgb(106,87,168);
+    cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.016);
+    background: rgba(255,255,255,0.35);
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,0.085),
+                0 2px 30px 0 rgba(0,0,0,0.2);
+
+}
+span{
+    display: flex;
+    justify-content: right;
+}
+span a{
+    color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+}
+.text a
+{
+  
+  float:righ;
+  font-size: 1em;
+  background: #fff;
+  padding: 30px 50px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #111;
+  letter-spacing: 5px;
+  transition: 0.2s;
+}
+.text a:hover
+{
+  letter-spacing: 15px;
+}
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <header>Asset Information</header>
+        </div>
+        <div class="input-container"method="post" name="form" onsubmit="return validated()">
+            <div class="input-field">
+                <label for="user">Asset Type</label>
+                <input type="text" name="email" id="email_error" required>  
+            </div>
+
+            <div class="input-field">
+                <label for="pass">Make</label>
+                <input type="password" name="password" id="pass_error" required>  
+            </div>
+            <div class="input-field">
+                <label for="pass">Model</label>
+                <input type="password" name="password" id="pass_error" required>  
+            </div>
+            <div class="input-field">
+                <label for="pass">Serial Number</label>
+                <input type="password" name="password" id="pass_error" required>  
+            </div>
+            <div class="input-field">
+                <label for="pass">Asset Tag</label>
+                <input type="password" name="password" id="pass_error" required>  
+            </div>
+            <div class="input-field">
+                <label for="pass">Asset Status</label>
+                <input type="password" name="password" id="pass_error" required>  
+            </div>
+            <div class="input-field">
+                <label for="pass">RAM</label>
+                <input type="password" name="password" id="pass_error" required>  
+            </div>
+            <div class="input-field">
+                <label for="pass">Storage</label>
+                <input type="password" name="password" id="pass_error" required>  
+            </div>
+            <div class="input-field">
+                <label for="pass">Description</label>
+                <input type="password" name="password" id="pass_error" required>  
+            </div>
+
+
+            <div class="input-field">
+                
+                <input type="submit" class="submit"  name="submit" value="Save">  
+            </div>
+            <span><a href="#">Edit</a></span>
+        </div>
+    </div>
+    <div class="text">
+       
+        <a href="maindashboard1.html" href="#" class="btn">Home</a>
+      </div>
+    <script src="validate.js"></script>
+
+</body>
+</html>

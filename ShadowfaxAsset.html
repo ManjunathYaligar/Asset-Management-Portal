@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadowfax IT Asset Inventory</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background-image: url(a1.jpg);
+        }
+                                                                                                         
+        header {
+            width: 100%;
+            height: 50px;
+            padding: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 40px;
+            font-weight: bold;
+            background: linear-gradient(to right, rgb(182, 53, 7), rgb(182, 53, 7));
+            color: #ffffff;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            animation: rotateColor 5s linear infinite;
+            flex-grow: 1;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-left: 15px;
+        }
+
+        nav {
+            width: 168px;
+            height: 100%;
+            position: fixed;
+            top: 70px;
+            left: -168px;
+            background-color: #c0392b;
+            z-index: 1;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            transition: left 0.5s;
+        }
+
+        .menu-item {
+            box-sizing: border-box;
+            padding: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 100%;
+            border-bottom: 2px solid #fff;
+        }
+
+        .menu-item:first-child {
+            border-top: 2px solid #fff; /* Add a top border for the first item */
+        }
+
+        .menu-item:last-child {
+            border-bottom: 2px solid #fff;
+        }
+
+        .menu-item a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        .menu-item a:hover {
+            color: rgb(141, 131, 131); /* Change the color on hover */
+        }
+
+        .showcase {
+            text-align: center;
+            margin-top: 100px;
+            position: relative;
+            z-index: 2;
+            color: #000000;
+        }
+
+        .content-box {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 70px; /* Adjust the padding to increase the size */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: 25px 0;
+        }
+
+        .text {
+            max-width: 800px; /* Adjust the max-width as needed */
+            margin: 0 auto;
+        }
+
+        .text h2 {
+            font-size: 3em;
+            font-weight: 800;
+            line-height: 1em;
+            color: black;
+            animation: textShadow 2s infinite alternate;
+        }
+
+        .text p {
+            font-size: 1.2em; /* Adjust the font size as needed */
+            margin: 20px 0;
+            font-weight: 400;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            font-size: 1.5em;
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            padding: 15px 30px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 500;
+            color: #ffffff;
+            margin: 10px 15px;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+            z-index: 3;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #c0392b, #e74c3c);
+            transform: scale(1.1);
+        }
+
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes rotateColor {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        @keyframes textShadow {
+            0% {
+                text-shadow: 0 0 10px rgba(246, 251, 248, 0.7);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(246, 251, 248, 0.7);
+            }
+        }
+
+        /* New styles for email link */
+        .email-link {
+            text-decoration: none;
+            color: black; /* Set the color to black */
+            font-size: 0.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .email-link i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img class="logo" src="shadowfax-1588310526777.avif" alt="Logo">
+        <h1>Shadowfax IT Asset Inventory</h1>
+    </header>
+
+    <nav id="sideNav" onclick="closeNav()">
+        <!-- Add your left-side menu items here -->
+        <div class="menu-item"><a href="">Home</a></div>
+        <div class="menu-item"><a href="maindashboard1.html">Login</a></div>
+        <div class="menu-item"><a href="newlogin.html">Admin</a></div>
+    </nav>
+
+    <section class="showcase">
+        <div class="content-box">
+            <div class="text">
+                <h2>Welcome, IT</h2>
+                <p>We are delighted to have you on board. Streamline your IT asset management and enhance productivity with our innovative solutions.</p>
+            </div>
+            <div class="btn-container">
+                <a href="maindashboard1.html" class="btn" onclick="createRipple(event)">Login</a>
+                <a href="newlogin.html" class="btn" onclick="createRipple(event)">Admin</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email link with Gmail icon -->
+    
+    <div>
+        
+    <a href="mailto:IT.Support@Shadowfax.in" class="email-link">
+        <i class="email-icon fas fa-envelope"></i>
+        Note -If any query please click on this Email IT.Support@Shadowfax.in
+    </a>
+</div>
+    <script>
+        function handleMenuClick(option) {
+            // Add your logic for handling menu item clicks here
+            alert('Clicked on ' + option);
+        }
+
+        function toggleNav() {
+            const sideNav = document.getElementById('sideNav');
+            sideNav.style.left = '0';
+        }
+
+        function closeNav() {
+            const sideNav = document.getElementById('sideNav');
+            sideNav.style.left = '-168px';
+        }
+
+        window.onload = toggleNav;
+    </script>
+</body>
+
+</html>
+
+
+<html>
+    <h1>
+        window.onload = toggleNav 
+        window.onload = toggleNav
+        window.onload = toggleNav
+        window.onload = toggleNav
+        window.onload = toggleNav
+
+        function
+    </h1>
+</html>

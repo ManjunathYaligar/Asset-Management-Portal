@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Registration Form</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('placeholder-background-image.jpg'); /* Add your background image URL here */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 70px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 120%;
+    max-width: 725px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    height: 80vh;
+    overflow-y: auto;
+}
+
+/* Adjust the margin-top of the form body to move it down */
+body {
+    margin-top: 70px; /* Increase this value to move the entire form down */
+}
+        h2 {
+            text-align: center;
+            color: black;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            color: #555555;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .ram-dropdown,
+        .storage-dropdown {
+            display: none;
+        }
+
+        /* Navbar styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #555;
+        }
+
+        .logout-btn,
+        .back-btn {
+            padding: 8px;
+            background-color: #4caf50;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover,
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="ShadowfaxAsset.html" class="nav-link" onclick="goBack()">Back</a>
+        <a href="maindashboard1.html" class="nav-link" onclick="logout()">Logout</a>
+    </nav>
+
+
+    <form id="assetForm" method="post" onsubmit="submitForm(event)">
+        <h2>Asset Registration Form</h2>
+        
+
+        <label for="AssetType">Asset Type</label>
+        <select id="AssetType" name="AssetType" onchange="toggleFormSection()" required>
+            <option value="" disabled selected>Select an asset type</option>
+            <option value="computer" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">Desktop</option>c
+            <option value="printer" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">Printer</option>
+            <option value="laptop" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">Laptop</option>
+            <option value="hhd" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">HHD</option>
+            <option value="scanner" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">Scanner</option>
+             <option value="accesspoint" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">Access Point</option>
+            <option value="wifirouter" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">WiFi Router</option>
+            <option value="router" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">Router</option>
+            <option value="firewall" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">Firewall</option>
+            <option value="switch" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">Switch</option>
+            <option value="donglewifi" data-url="https://script.google.com/macros/s/AKfycbwZjXdAXVn2pxrjYKJG35USzqpGFllSSpLD0lWp14OEz9LuO4_LjX1qbtQ3xxlhn1Pikw/exec">Dongle WiFi</option>
+        </select>
+
+        <div id="computer-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make">Make</label>
+            <input type="text" id="Make" name="Make">
+            <label for="Model"> Model</label>
+            <input type="text" id="Model" name="Model">
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+            <label for="Processor">Processor</label>
+            <input type="text" id="Processor" name="Processor">
+            <label for="Ram">RAM</label>
+            <select id="Ram" name="Ram" class="Ram-dropdown">
+                <option value="4GB">2GB</option>
+                <option value="8GB">4GB</option>
+                <option value="4GB">6GB</option>
+                <option value="8GB">8GB</option>
+                <option value="16GB">12GB</option>
+                <option value="16GB">24GB</option>
+                <option value="16GB">32GB</option>
+            </select>
+            <label for="Storage">Storage</label>
+            <select id="Storage" name="Storage" class="Storage-dropdown">
+                <option value="128GB">128GB</option>
+                <option value="256GB">256GB</option>
+                <option value="500GB">500GB</option>
+                <option value="1TB">1TB</option>
+            </select>
+
+            <label for="Mac Address">Mac Address</label>
+            <input type="text" id="Mac Address" name="Mac Address">
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+        
+            <!-- Fields for Computer -->
+        </div>
+
+        <div id="printer-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make">Make</label>
+            <input type="text" id="Make" name="Make">
+
+            <label for="Model">Model</label>
+            <input type="text" id="Model" name="Model">
+
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+             <!-- Fields for printer -->
+        </div>
+
+        <div id="laptop-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make">Make</label>
+            <input type="text" id="Make" name="Make">
+            <label for="Model">Model</label>
+            <input type="text" id="Model" name="Model">
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+            <label for="Processor">Processor</label>
+            <input type="text" id="Processor" name="Processor">
+            <label for="Ram">RAM</label>
+            <select id="Ram" name="Ram" class="Ram-dropdown">
+                <option value="4GB">2GB</option>
+                <option value="8GB">4GB</option>
+                <option value="4GB">6GB</option>
+                <option value="8GB">8GB</option>
+                <option value="16GB">12GB</option>
+                <option value="16GB">24GB</option>
+                <option value="16GB">32GB</option>
+            </select>
+            <label for="Storage">Storage</label>
+            <select id="Storage" name="Storage" class="Storage-dropdown">
+                <option value="128GB">128GB</option>
+                <option value="256GB">256GB</option>
+                <option value="500GB">500GB</option>
+                <option value="1TB">1TB</option>
+            </select>
+            <label for="Mac Address">Mac Address</label>
+            <input type="text" id="Mac Address" name="Mac Address">
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+        
+           
+            <!-- Fields for Laptop -->
+        </div>
+
+        <div id="hhd-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make">Make</label>
+            <input type="text" id="Make" name="Make">
+
+            <label for="Model">Model</label>
+            <input type="text" id="Model" name="Model">
+
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+
+            <label for="Processor">Processor</label>
+            <input type="text" id="Processor" name="Processor">
+
+            <label for="RAM">RAM</label>
+            <select id="RAM" name="RAM" class="Ram-dropdown">
+                <option value="4GB">2GB</option>
+                <option value="8GB">4GB</option>
+                <option value="16GB">6GB</option>
+                <option value="16GB">8GB</option>
+            </select>
+
+            <label for="Storage">Storage</label>
+            <select id="Storage" name="Storage" class="Storage-dropdown">
+                <option value="256GB">128GB</option>
+                <option value="512GB">256GB</option>
+                <option value="1TB">500GB</option>
+            </select>
+
+            <label for="Mac Address">Mac Address</label>
+            <input type="text" id="Mac Address" name="Mac Address">
+
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+
+        <div id="scanner-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make">Make</label>
+            <input type="text" id="Make" name="Make">
+
+            <label for="Model">Model</label>
+            <input type="text" id="Model" name="Model">
+
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+         
+        <div id="accesspoint-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make">Make</label>
+            <input type="text" id="Make" name="Make">
+
+            <label for="Model">Model</label>
+            <input type="text" id="Model" name="Model">
+
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+
+            <label for="Mac Address">Mac Address</label>
+            <input type="text" id="Mac Address" name="Mac Address">
+            <label for="Point Status">Point Status</label>
+            <select id="Point Status" name="Point Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+
+        <div id="wifirouter-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make"> Make</label>
+            <input type="text" id="Make" name="Make">
+
+            <label for="Model"> Model</label>
+            <input type="text" id="Model" name="Model">
+
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+
+            <label for="Mac Address">Mac Address</label>
+            <input type="text" id="Mac Address" name="Mac Address">
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+        <div id="router-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make"> Make</label>
+            <input type="text" id="Make" name="Make">
+
+            <label for="Model"> Model</label>
+            <input type="text" id="Model" name="Model">
+
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+
+            <label for="Mac Address">Mac Address</label>
+            <input type="text" id="Mac Address" name="Mac Address">
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+        <div id="firewall-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make"> Make</label>
+            <input type="text" id="Make" name="Make">
+
+            <label for="Model"> Model</label>
+            <input type="text" id="Model" name="Model">
+
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+
+            <label for="Mac Address">Mac Address</label>
+            <input type="text" id="Mac Address" name="Mac Address">
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+        <div id="switch-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make"> Make</label>
+            <input type="text" id="Make" name="Make">
+
+            <label for="Model"> Model</label>
+            <input type="text" id="Model" name="Model">
+
+            <label for="Serial Number">Serial Number</label>
+            <input type="text" id="Serial Number" name="Serial Number">
+
+            <label for="Mac Address">Mac Address</label>
+            <input type="text" id="Mac Address" name="Mac Address">
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+        <div id="donglewifi-section" class="form-section">
+            <label for="Asset Tag">Asset Tag</label>
+            <input type="text" id="Asset Tag" name="Asset Tag">
+            <label for="Make"> Make</label>
+            <input type="text" id="Make" name="Make">
+
+            <label for="Model"> Model</label>
+            <input type="text" id="Model" name="Model">
+
+            <label for="Service Provider">Service Provider</label>
+            <select id="Service Provider" name="Service Provider">
+                <option value="Active">Airtel</option>
+                <option value="Stock">Jio</option>
+                <option value="Scrap">Vodafone</option>
+            </select>
+
+            <label for="Mac Address">Mac Address</label>
+            <input type="text" id="Mac Address" name="Mac Address">
+            <label for="Status">Status</label>
+            <select id="Status" name="Status">
+                <option value="Active">Active</option>
+                <option value="Stock">Stock</option>
+                <option value="Scrap">Scrap</option>
+            </select>
+
+            <label for="Purchase Date">Purchase Date</label>
+            <input type="date" id="Purchase Date" name="Purchase Date">
+        </div>
+
+        <!-- Add more form sections for other asset types -->
+        
+
+
+        <input type="submit" value="Register Asset">
+    </form>
+
+    <script>
+        function toggleFormSection() {
+            var assetType = document.getElementById("AssetType").value;
+            var formSections = document.getElementsByClassName("form-section");
+            var ramDropdown = document.querySelector('.ram-dropdown');
+            var storageDropdown = document.querySelector('.storage-dropdown');
+
+            for (var i = 0; i < formSections.length; i++) {
+                formSections[i].classList.remove("active");
+            }
+
+            document.getElementById(assetType.toLowerCase() + "-section").classList.add("active");
+
+            // Show or hide dropdowns based on the selected asset type
+            ramDropdown.style.display = (assetType === 'laptop' || assetType === 'hdd') ? 'block' : 'none';
+            storageDropdown.style.display = (assetType === 'laptop' || assetType === 'hdd') ? 'block' : 'none';
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            var assetType = document.getElementById("AssetType").value;
+            var form = document.getElementById("assetForm");
+            var selectedOption = document.querySelector("#AssetType option:checked");
+
+            // Get the URL from the data-url attribute of the selected option
+            var url = selectedOption.getAttribute("data-url");
+
+            // Update the form action attribute with the correct URL
+            form.action = url;
+
+            // Now you can submit the form
+            form.submit();
+        }
+
+        function goBack() {
+            // Placeholder function for logout action
+            // Implement the actual logout functionality
+            window.history.back();
+        }
+        
+
+        function logout() {
+            // Go back to the previous page
+            alert('Confirm logout');
+            window.history.back();
+        }
+        
+    </script>
+</body>
+</html>
+
+
